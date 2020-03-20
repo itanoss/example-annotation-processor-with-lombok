@@ -20,11 +20,15 @@ import static java.util.stream.Collectors.toList;
 
 @AutoService(Processor.class)
 @SupportedAnnotationTypes("*")
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class AnnotationProcessor extends AbstractProcessor {
 
     private Messager messager;
     private List<Element> deferedElement = new LinkedList<>();
+
+    @Override
+    public SourceVersion getSupportedSourceVersion() {
+        return SourceVersion.latestSupported();
+    }
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnv) {
